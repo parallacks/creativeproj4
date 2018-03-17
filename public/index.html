@@ -27,7 +27,7 @@
         </form>
 
         <h3>Entry</h3>
-        <div v-if="number>=0" class="journal-box">
+        <div v-if="full" class="journal-box">
           <h3>{{entry.title}}</h3>
           <p>{{entry.text}}</p>
           <p><i>--{{entry.time}} {{entry.day}}</i></p>
@@ -48,7 +48,7 @@
     <div class="push"></div>
   </div>
   <footer class="footer">
-    Link to <a href="https://github.com/BYU-CS260-Winter-2018/lab-3-parallacks">github repository</a>
+    Link to <a href="https://github.com/parallacks/creativeproj4">github repository</a>
   </footer>
 </body>
 

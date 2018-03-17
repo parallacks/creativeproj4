@@ -4,7 +4,7 @@ var app = new Vue({
     number: '-1',
     // current: {},
     max: '',
-    loading: true,
+    full: false,
     addedTitle: '',
     addedEntry: '',
     items: {},
@@ -44,8 +44,13 @@ var app = new Vue({
   },
   methods: {
     getItems: function() {
-      axios.get("http://localhost:3000/api/items").then(response => {
+      axios.get("http://localhost:4321/api/items").then(response => {
         this.items = response.data;
+        if(this.items.length>0)
+          this.full=true;
+        else {
+          this.full=false;
+        }
         return true;
       }).catch(err => {});
     },
@@ -55,11 +60,11 @@ var app = new Vue({
     previousEntry: function() {
       console.log(this.items.length);
       if(this.number>0)
-        this.number--;
+        --this.number;
     },
     nextEntry: function() {
       if(this.number<this.items.length-1)
-        this.number++;
+        ++this.number;
     },
     lastEntry: function() {
       this.number = this.items.length-1;
@@ -77,11 +82,11 @@ var app = new Vue({
     },
     getEntry: function(){
       if(this.items.length>this.number)
-      this.entry=this.items[this.number];
+        this.entry=this.items[this.number];
     },
     addJournal: function() {
       let date = new Date();
-      axios.post("http://localhost:3000/api/items", {
+      axios.post("http://localhost:4321/api/items", {
         title:this.addedTitle,
         text: this.addedEntry,
         day: date.getDate() + " - " + (date.getMonth() + 1) + " - " + date.getFullYear(),
@@ -90,21 +95,19 @@ var app = new Vue({
         this.addedTitle="";
         this.addedEntry = "";
         this.getItems();
-        console.log(this.number);
-        if(this.number<0)
+        // if(this.number<0)
           this.number=0;
-        console.log(this.number);
         this.getEntry();
         return true;
       }).catch(err => {});
 
     },
     deleteEntry: function(){
-      axios.delete("http://localhost:3000/api/items/"+this.entry.id).then(response =>{
+      axios.delete("http://localhost:4321/api/items/"+this.entry.id).then(response =>{
         this.getItems();
         this.number=0;
-        if(this.items.length=0)
-          this.number= '-1';
+        // if(this.items.length=0)
+        //   this.full=false;
         return true;
       }).catch(err=>{});
     },

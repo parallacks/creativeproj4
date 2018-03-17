@@ -13,12 +13,12 @@ button {
 .journal-box{
   background-color:#65dfff;
   background-color: rgba(176, 238, 235, 0.5);
-  margin-left:20%;
-  margin-right: 20%;
+  margin-left:15%;
+  margin-right: 15%;
 }
 textarea {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     height: 100px;
 }
 .footer,
