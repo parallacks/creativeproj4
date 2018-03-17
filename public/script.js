@@ -44,7 +44,7 @@ var app = new Vue({
   },
   methods: {
     getItems: function() {
-      axios.get("http://localhost:4321/api/items").then(response => {
+      axios.get("http://45.55.25.20:4321/api/items").then(response => {
         this.items = response.data;
         if(this.items.length>0)
           this.full=true;
@@ -86,7 +86,7 @@ var app = new Vue({
     },
     addJournal: function() {
       let date = new Date();
-      axios.post("http://localhost:4321/api/items", {
+      axios.post("http://45.55.25.20:4321/api/items", {
         title:this.addedTitle,
         text: this.addedEntry,
         day: date.getDate() + " - " + (date.getMonth() + 1) + " - " + date.getFullYear(),
@@ -103,7 +103,7 @@ var app = new Vue({
 
     },
     deleteEntry: function(){
-      axios.delete("http://localhost:4321/api/items/"+this.entry.id).then(response =>{
+      axios.delete("http://45.55.25.20:4321/api/items/"+this.entry.id).then(response =>{
         this.getItems();
         this.number=0;
         // if(this.items.length=0)
