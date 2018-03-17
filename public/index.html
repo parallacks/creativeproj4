@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <title>Personal Journal</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="app">
+      <h1>Personal Journal</h1>
+
+      <!-- <img v-bing:src="current.img" v-bind:alt="current.alt" /> -->
+      <div>
+
+        <h3>Add an Entry here</h3>
+        <form v-on:submit.prevent="addJournal">
+          <input v-model="addedTitle" placeholder="Title"></p>
+          <textarea v-model="addedEntry" placeholder="Enter your thoughts here"></textarea>
+          <br />
+          You can go <a href="https://www.lipsum.com/">here</a> to generate large amounts of random text for testing.
+          <br/>
+          <button type="submit">Save Entry</button>
+        </form>
+
+        <h3>Entry</h3>
+        <div v-if="number>=0" class="journal-box">
+          <h3>{{entry.title}}</h3>
+          <p>{{entry.text}}</p>
+          <p><i>--{{entry.time}} {{entry.day}}</i></p>
+          <button v-on:click="deleteEntry">Delete Entry</button>
+        </div>
+        <p>
+          <button v-on:click="firstEntry">First</button>
+          <button v-on:click="previousEntry">Previous</button>
+          <button v-on:click="randomEntry">Random</button>
+          <button v-on:click="nextEntry">Next</button>
+          <button v-on:click="lastEntry">Last</button>
+        </p>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="/script.js"></script>
+    <div class="push"></div>
+  </div>
+  <footer class="footer">
+    Link to <a href="https://github.com/BYU-CS260-Winter-2018/lab-3-parallacks">github repository</a>
+  </footer>
+</body>
+
+</html>
